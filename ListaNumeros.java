@@ -1,9 +1,8 @@
-
 /**
  * La clase representa a una lista de 
  * números enteros
  * 
- * @author - 
+ * @author - ANTHONNY TROYA
  * 
  */
 import java.util.Arrays;
@@ -11,7 +10,8 @@ import java.util.Arrays;
 public class ListaNumeros 
 {
     // definir atributos
-
+    private int [] lista;
+    private int total;
     /**
      * Constructor de la clase ListaNumeros 
      * Crea e inicializa adecuadamente los
@@ -20,7 +20,8 @@ public class ListaNumeros
      * @param n el tamaño máximo de la lista
      */
     public ListaNumeros(int n) {
-         
+         lista = new int[n];
+         total = 0;
     }
 
     /**
@@ -31,10 +32,7 @@ public class ListaNumeros
      * @return true si se ha podido añadir, false en otro caso
      */
     public boolean addElemento(int numero) {
-        
-        
-        return true;
-
+      return false;
     }
 
     /**
@@ -42,7 +40,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-         return true;
+         return lista.length == total;
 
     }
 
