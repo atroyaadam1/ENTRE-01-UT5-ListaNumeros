@@ -34,6 +34,7 @@ public class ListaNumeros
     public boolean addElemento(int numero) {
         if (!estaCompleta()){
             lista[pos] = numero;
+            pos++;
             return true;
         }
         return false;
@@ -44,8 +45,8 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-        return lista.length == pos; // duda
-        // return pos == lista.length;
+        // return lista.length == pos; // duda
+        return pos == lista.length;
 
     }
 
@@ -54,8 +55,8 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaVacia() {
-        return lista.length == 0;
-        // return pos == 0;
+        // return lista.length == 0;
+        return pos == 0;
     }
 
     /**
@@ -152,7 +153,11 @@ public class ListaNumeros
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-
+        for (int  i = 0; i < lista.length; i++){
+            if(i == 0){
+                lista[i] = 0;
+            }
+        }
     }
 
     /**
@@ -204,7 +209,37 @@ public class ListaNumeros
         int numero = 21;
         System.out.println(lista.toString());
         System.out.println("\t" + numero + " aparece en posiciones ");
-        // seguir completando
+        int[] posicion = lista.buscarPosicionesDe(numero);
+        for(int i = 0; i < posicion.length; i++){
+            System.out.print(posicion[i]);
+        }
 
+        System.out.println("---buscarBinario()---");
+        if(lista.buscarBinario(numero) == 0){
+            System.out.println("El número no está en la lista");
+
+        }else{
+            System.out.println("El número está en la lista");
+        }
+
+        System.out.println("---invertir()---");
+        System.out.println("Lista sin invertir:");
+        System.out.println(lista.toString());
+        System.out.println("Lista invertida  " + lista.getTotalNumeros() + " elementos en total");
+        lista.invertir(2);
+        System.out.println(lista.toString());
+        System.out.println();
+
+        System.out.println("---toArray2D()---\n");
+        int[][] array2d = lista.toArray2D();
+        for(int i = 0; i < array2d.length; i++){
+            System.out.print((i + 1) + ":");
+            for(int g = 0; g < array2d[i].length; g++){
+                System.out.print(array2d[i][g] );
+            }
+
+        }
     }
+
 }
+
