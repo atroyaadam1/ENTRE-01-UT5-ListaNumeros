@@ -135,28 +135,27 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
-        int total = 0;
-        for (int i = 0; i <= lista.length; i++){
-            if(lista[i] == numero){
-                total++;
-            }
-        }
-        if (total != 0){
-            return total;
+        int resultadoCopia;  
+        int[] copia = new int[lista.length];
+        resultadoCopia = Arrays.binarySearch(lista, numero); 
+        if(resultadoCopia == 0){
+            return -1;
         } else {
-            return Arrays.binarySearch(lista, numero);
-        }
+            return resultadoCopia;
 
+        }
     }
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-        for (int  i = 0; i < lista.length; i++){
-            if(i == 0){
-                lista[i] = 0;
-            }
+        pos--;
+        for (int i = 0; i < lista.length - 1; i++){
+            lista[i] = lista[i + 1];
+        }
+        if (estaVacia()){
+            System.out.println("La lista está vacía");
         }
     }
 
@@ -187,8 +186,20 @@ public class ListaNumeros
     public int[][] toArray2D() {
 
         int[][] ragged = new int [lista.length][];
+        for (int i = 0; i < lista.length; i++){
+            ragged[i] = new int[i + 1];
+            ragged[i][0] = 1;
+            ragged[i][ragged[i].length - 1] = 1;
 
+            for (int j = 2; j < lista.length; j++ ){
+                ragged[j] = new int[j + 1];
+                ragged[j][0] = 1;
+                ragged[j][j] = 1;
+            }
+
+        }
         return ragged;
+
     }
 
     /**
@@ -225,7 +236,8 @@ public class ListaNumeros
         System.out.println("---invertir()---");
         System.out.println("Lista sin invertir:");
         System.out.println(lista.toString());
-        System.out.println("Lista invertida  " + lista.getTotalNumeros() + " elementos en total");
+        System.out.println("Lista invertida " + 
+        lista.getTotalNumeros() + " elementos en total");
         lista.invertir(2);
         System.out.println(lista.toString());
         System.out.println();
@@ -233,13 +245,11 @@ public class ListaNumeros
         System.out.println("---toArray2D()---\n");
         int[][] array2d = lista.toArray2D();
         for(int i = 0; i < array2d.length; i++){
-            System.out.print((i + 1) + ":");
-            for(int g = 0; g < array2d[i].length; g++){
-                System.out.print(array2d[i][g] );
+            for(int j = 0; j < array2d[i].length; j++){
+                System.out.printf("%8d",array2d[i][j]);
             }
-
+            System.out.println();
         }
     }
-
 }
 
